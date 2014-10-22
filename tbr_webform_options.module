@@ -5,7 +5,12 @@
  */
 function tbr_webform_options_webform_select_options_info() {
     $items = array();
-    
+
+    $items['tbroffices'] = array(
+        'title' => t('All TBR Offices'),
+        'options callback' => 'tbr_webform_options_tbroffices'
+    );    
+
     $items['universitites'] = array(
         'title' => t('Universities'),
         'options callback' => 'tbr_webform_options_universitites'
@@ -37,6 +42,16 @@ function tbr_webform_options_webform_select_options_info() {
 /**
  * Build an options list to be used with webforms select list based in drupal roles
  */
+function tbr_webform_options_tbroffices() {
+    
+    $contentarray = array(); 
+    $terms=taxonomy_get_tree(5);
+    foreach($terms as $key=>$term) {
+    	$contentarray[$term->name] = t($term->name);
+    }
+    return $contentarray;
+}
+
 function tbr_webform_options_universitites() {
     $contentarray = array();    
 	$contentarray['apsu'] = t("Austin Peay State University");
@@ -148,7 +163,6 @@ function tbr_webform_options_tbrall() {
 	$contentarray['stcc'] = t("Southwest Tennessee Community College");
 	$contentarray['vscc'] = t("Volunteer State Community College");
 	$contentarray['wscc'] = t("Walters State Community College"); 
-	$contentarray['tcatchscc'] = t("TCAT Chattanooga State Community College");
 	$contentarray['tcatathens'] = t("TCAT Athens");
 	$contentarray['tcatchattanooga'] = t("TCAT Chattanooga");
 	$contentarray['tcatcovington'] = t("TCAT Covington");
@@ -171,15 +185,6 @@ function tbr_webform_options_tbrall() {
 	$contentarray['tcatnashville'] = t("TCAT Nashville");
 	$contentarray['tcatnewbern'] = t("TCAT Newbern");
 	$contentarray['tcatoneida'] = t("TCAT Oneida");
-	$contentarray['tcatparis'] = t("TCAT Paris");
-	$contentarray['tcatpulaski'] = t("TCAT Pulaski");
-	$contentarray['tcatripley'] = t("TCAT Ripley");
-	$contentarray['tcatshelbyville'] = t("TCAT Shelbyville");
-	$contentarray['tcatwhiteville'] = t("TCAT Whiteville");
-
-    return $contentarray;
-}
- Oneida");
 	$contentarray['tcatparis'] = t("TCAT Paris");
 	$contentarray['tcatpulaski'] = t("TCAT Pulaski");
 	$contentarray['tcatripley'] = t("TCAT Ripley");
